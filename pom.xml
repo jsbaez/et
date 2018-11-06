@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>net.jbaez.et</groupId>
+	<artifactId>parent</artifactId>
+	<version>${revision}</version>
+	<packaging>pom</packaging>
+
+	<name>Parent Pom</name>
+
+	<properties>
+		<revision>0.0.1</revision>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<et.version>${project.version}</et.version>
+		<junit.version>5.0.2</junit.version>
+	</properties>
+
+	<modules>
+		
+	</modules>
+
+	<build>
+		<finalName>et-${project.artifactId}-${project.version}</finalName>
+		<pluginManagement>
+			<plugins>
+
+				<plugin>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.19</version>
+					<dependencies>
+						<dependency>
+							<groupId>org.junit.platform</groupId>
+							<artifactId>junit-platform-surefire-provider</artifactId>
+							<version>1.0.2</version>
+						</dependency>
+						<dependency>
+							<groupId>org.junit.jupiter</groupId>
+							<artifactId>junit-jupiter-engine</artifactId>
+							<version>${junit.version}</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+			
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.8.0</version>
+					<configuration>
+						<release>11</release> 
+					</configuration>
+				</plugin>
+
+				<!-- mvn versions:set -DnewVersion=x.y.z-SNAPSHOT -> Change version mvn 
+					versions:revert -> Revert change mvn versions:commit -> change version -->
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>versions-maven-plugin</artifactId>
+					<version>2.3</version>
+				</plugin>
+
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-api</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+		</dependency>
+	</dependencies>
+
+</project>
