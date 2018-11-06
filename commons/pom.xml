@@ -12,7 +12,6 @@
   </parent>
 
   <artifactId>commons</artifactId>
-  <packaging>pom</packaging>
   <name>ET commons Pom</name>
 
 </project>
