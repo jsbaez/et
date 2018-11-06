@@ -9,7 +9,7 @@
 	<version>${revision}</version>
 	<packaging>pom</packaging>
 
-	<name>Parent Pom</name>
+	<name>ET Parent Pom</name>
 
 	<properties>
 		<revision>0.0.1</revision>
@@ -20,7 +20,7 @@
 	</properties>
 
 	<modules>
-		
+		<module>commons</module>		
 	</modules>
 
 	<build>
