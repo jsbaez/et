@@ -14,10 +14,10 @@
 	<properties>
 		<revision>0.0.1</revision>
 
-		<java.version>10</java.version>
+		<java.version>11</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<et.version>${project.version}</et.version>
 		<junit.version>5.0.2</junit.version>
@@ -54,7 +54,7 @@
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>3.8.0</version>
 					<configuration>
-						<release>${java.version}</release> 
+						<release>${java.version}</release>
 					</configuration>
 				</plugin>
 
