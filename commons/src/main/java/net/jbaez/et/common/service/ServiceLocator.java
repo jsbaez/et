@@ -1,7 +1,9 @@
 package net.jbaez.et.common.service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.ServiceLoader;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
@@ -17,6 +19,8 @@ public class ServiceLocator
 	{
 		return instance;
 	}
+	
+	private Map<Class<?>, ServiceLoader<?>> loaderCache = new ConcurrentHashMap<>();
 	
 	private ServiceLocator()
 	{
@@ -39,9 +43,18 @@ public class ServiceLocator
 		return findServices(type);
 	}
 	
+	@SuppressWarnings("unchecked")
 	private <T> List<T> findServices(Class<T> type)
 	{
-		ServiceLoader<T> services = ServiceLoader.load(type);
+		ServiceLoader<T> services = null;			
+		if(!loaderCache.containsKey(type))
+		{
+			services = ServiceLoader.load(type);
+			loaderCache.put(type, services);
+		}else {			
+			services = (ServiceLoader<T>) loaderCache.get(type);
+		}
+		
 		Stream<T> stream = StreamSupport.stream(services.spliterator(), false);
 		List<T> result = stream.collect(Collectors.toList());
 		

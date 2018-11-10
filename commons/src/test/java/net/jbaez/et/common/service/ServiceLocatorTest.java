@@ -33,4 +33,13 @@ public class ServiceLocatorTest {
 		Interface1 interface1 = instance.findOne(Interface1.class);
 		Assertions.assertNotNull(interface1);
 	}
+	
+	@Test
+	public void equals_instance_service()
+	{
+		ServiceLocator locator = ServiceLocator.instance();
+		Interface1 instance = locator.findOne(Interface1.class);
+		Interface1 instance2 = locator.findOne(Interface1.class);
+		Assertions.assertEquals(instance, instance2, "No son las misma instancia");
+	}
 }
