@@ -62,3 +62,4 @@ local.properties
 # sbteclipse plugin
 .target
 
+mvn-win.sh
