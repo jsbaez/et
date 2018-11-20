@@ -4,9 +4,9 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import net.jbaez.et.common.utils.Order;
-import net.jbaez.et.common.utils.Sortable;
+import net.jbaez.et.common.utils.ISortable;
 
-public interface IResourceSupplier extends Sortable
+public interface IResourceSupplier extends ISortable
 {
 	Order getOrder();
 	

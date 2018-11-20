@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import net.jbaez.et.common.i18n.IResourceService;
 import net.jbaez.et.common.i18n.IResourceSupplier;
 import net.jbaez.et.common.service.ServiceLocator;
-import net.jbaez.et.common.utils.Sortable;
+import net.jbaez.et.common.utils.ISortable;
 
 public class CommonResourceService implements IResourceService 
 {
@@ -25,18 +25,17 @@ public class CommonResourceService implements IResourceService
 	{
 		if(resources == null)
 		{
-			List<IResourceSupplier> suppliers = ServiceLocator.instance()
-				.findAll(IResourceSupplier.class);
+			List<IResourceSupplier> suppliers = ServiceLocator
+				.instance().findAll(IResourceSupplier.class);
 				
-			resources = suppliers.stream().sorted(Sortable.COMPARATOR)
+			resources = suppliers.stream().sorted(ISortable.COMPARATOR)
 				.map(IResourceSupplier::getResourceBundle)
 				.filter(Optional::isPresent).map(Optional::get)
 				.collect(Collectors.toList());
 		}
 		
 		Optional<ResourceBundle> resource = resources.stream()
-			.filter(r -> r.containsKey(token))
-			.findFirst();
+			.filter(r -> r.containsKey(token)).findFirst();
 		
 		if(!resource.isPresent())
 		{
